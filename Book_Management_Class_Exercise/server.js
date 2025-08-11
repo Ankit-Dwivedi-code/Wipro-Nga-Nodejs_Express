@@ -17,7 +17,7 @@ app.post('/books', async (req, res) => {
   try {
     const newBook = req.body;
     await addBook(newBook);
-    res.status(201).json(newBook);
+    res.status(201).json({ message: "Book added successfully", book: newBook });
   } catch (err) {
     res.status(500).json({ error: 'Failed to add book' });
   }
@@ -61,7 +61,7 @@ app.put('/books/:id', async (req, res) => {
 app.delete('/books/:id', async (req, res) => {
   try {
     await deleteBook(req.params.id);
-    res.status(204).send();
+    res.status(200).json({ message: "Book deleted successfully" });
   } catch (err) {
     res.status(500).json({ error: 'Failed to delete book' });
   }
